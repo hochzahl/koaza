@@ -1,0 +1,271 @@
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  font-feature-settings: "palt";
+}
+
+header {
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 48px;
+  position: fixed;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.94);
+  border-bottom: solid #dcdcdc 1px;
+  z-index: 100;
+}
+
+main {
+  display: block;
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 72px;
+  font-family: 'Noto Serif JP', serif;
+  line-height: 2em;
+  padding-bottom: 12px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #005c99;
+}
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  border-top: solid #dcdcdc 1px;
+  clear: both;
+}
+
+#mapcontainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+#logo {
+  font-family: "Hiragino Kaku Gothic ProN W6", san-serif;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 12px;
+  font-size: 24px;
+  width: 160px;
+  float: left;
+  color: #000000;
+}
+
+#logo-koaza {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 12px;
+  font-size: 24px;
+  width: 190px;
+  float: left;
+  color: #000000;
+}
+
+#about {
+  width: 150px;
+  float: right;
+  text-align: right;
+  padding-right: 12px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-koaza {
+  width: 100px;
+  float: right;
+  text-align: right;
+  padding-right: 12px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about_link {
+  margin-left: auto;
+}
+
+.leaflet-top {
+  margin-top: 48px;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8em;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  padding-top: 32px;
+  padding-bottom: 16px;
+  font-feature-settings: "palt" 1;
+}
+
+#tile_url {
+  padding: 12px 18px;
+  background-color: #f0f0f0;
+  margin: 8px 0px;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.mono {
+  font-family: 'Source Code Pro', monospace;
+}
+
+table {
+  margin: 8px auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 4px 8px;
+  border: solid 1px #808080;
+  margin: 0;
+}
+
+th {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  background-color: #808080;
+  color: #ffffff;
+}
+
+ol {
+  /*margin-left: 3.5em;*/
+}
+
+ol li {
+  list-style-type: none;
+  counter-increment: cnt;
+  position: relative;
+}
+
+ol li:before {
+  content: "[" counter(cnt) "]";
+  display: inline-block;
+  margin-left: -3.5em;
+  width: 3em;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+summary {
+  cursor: pointer;
+  outline: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+}
+
+.form-input {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 40px;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  background: #eaedf2;
+  font-size: 16px;
+}
+
+button {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  border: none;
+  display: block;
+  width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+#button {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  border: none;
+  display: block;
+  width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+#search-button {
+  width: 128px;
+  float: right;
+  padding-right: 4px;
+}
+
+#textbox {
+  float: left;
+  padding-left: 4px;
+  padding-right: 8px;
+  flex: 1;
+}
+
+#form {
+  height: 40px;
+  margin-top: 8px;
+  display: flex;
+}
+
+#resultData {
+  margin-top: 24px;
+}
+
+.reference_city {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  margin-left: -2em;
+}
+
+.reference_top {
+  margin-top: -16px;
+}
+
+.url {
+  word-break: break-all;
+}

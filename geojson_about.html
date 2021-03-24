@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-language" content="ja">
+  <meta name="robots" content="noindex">
+  <meta name="robots" content="nofollow">
+  <title>兵庫県小字地図について</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="./css/L.Control.Opacity.css" />
+  <link rel="stylesheet" href="./css/import.style.css" />
+  <link rel="icon" href="/img/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header id="header">
+    <a href="./geojson.html"><div id="logo-koaza">兵庫県小字地図</div></a>
+    <div id="about-koaza"><a href="./geojson_about.html" id="about_link">About</a></div>
+  </header>
+  <main>
+    <div class="title" id="first-title">このサイトについて</div>
+    <div id="explain">
+      　このサイトでは，兵庫県の小字地図（制作中）を掲載しています．<br />
+      　小字は，大字（藩政村）よりもさらに小さな区域のことで，小字の名前には，その土地の特徴を表したものがしばしば選ばれています．そのため，小字名からその土地の昔の利用方法や地形の状況を窺い知ることができるのです．しかし，現在では，とりわけ都市部で住居表示や土地区画整理，町名変更などにより小字が消滅していることが多く，また，そのほかの地域でも住所表示に小字を用いる地域は少ないので，なかなか小字を知る機会はありません．このサイトでは，そんな「小字」を手軽に調べることができるのです．
+    </div>
+    <div class="title">注意</div>
+    <div id="attention">
+      　本サイトは，字界線を地図上に描画するのにGeoJSONファイルを用いています．提供範囲が広範囲に広がるため，容量が大きくなっていますので，ご注意ください．また，ご利用の機器の性能によっては，描画に時間がかかることがあります．<br />
+      　得られた資料の都合上，字界の年代が提供地域全域で揃っているわけではありませんのでお気をつけください（古い資料がある地域に関しては，なるべく古いものを掲載しています）．また，小字界の特定は困難であるため，小字界の精度は非常に低い場合が多くなっています．あくまで目安とお考えください．なお，この地図を権利関係に使用することはできません．
+    </div>
+    <div class="title">転載について</div>
+    <div id="attention">
+      　このサイトに掲載されている地図の背景地図は，国土地理院の地理院タイルです．地理院タイルの転載については，<a href="https://maps.gsi.go.jp/development/ichiran.html">こちら</a>をご覧ください．本サイトの小字データの転載に際しては，出典を必ず明記ください．
+    </div>
+    <div class="title">収録地区</div>
+    <div id="area">
+      　現時点では，以下の地区の小字地図をご覧になれます．
+      <details>
+        <summary>姫路市</summary>
+        白浜町（甲・乙・丙），八家，東山，継，奥山，兼田，北原，勝原区宮田，大津区吉美，大津区天満，大津区長松，大津区平松，網干区浜田，網干区興浜，網干区余子浜，網干区新在家，網干区大江島，網干区田井，網干区宮内，網干区津市場，網干区坂上，網干区坂出，網干区和久，網干区高田，西延末，飾磨区阿成，飾磨区中島，飾磨区細江，飾磨区加茂，飾磨区今在家，飾磨区高町，飾磨区構，土山，西庄，井ノ口，町坪，岡田，玉手，飯田，中地，大野，平野，伊伝居，山野井町，八代，忍町，千代田町，大藏前町，久保町，高尾町，南畝町，豆腐町，駅前町，神屋町，朝日町，東郷町，花田町高木，花田町小川，花田町一本松，花田町勅旨，花田町上原田，花田町加納原田，船津町，香寺町土師，香寺町岩部，香寺町野田（66地区）．
+      </details>
+      <details>
+        <summary>尼崎市</summary>
+        高田，額田，神崎，次屋，下坂部，善法寺，小中島，若王寺，瓦宮，口田中，御園，上坂部，久々知，潮江，塚口，東戸松，下食満（17地区）．
+      </details>
+      <details>
+        <summary>明石市</summary>
+        二見町，魚住町（X地区）．
+      </details>
+      <details>
+        <summary>西宮市</summary>
+        西宮町（1地区）．
+      </details>
+      <details>
+        <summary>加古川市</summary>
+        加古川町寺家町（X地区）．
+      </details>
+      <details>
+        <summary>小野市</summary>
+        古川町，久保木町，住吉町，喜多町，高田町，鹿野町，広渡町，中島町，浄谷町，黒川町，敷地町，住永町，王子町，葉多町，久茂町，下大部町，片山町，大島町，天神町，中町，小野町，垂井町（神明町を含む），日吉町，池尻町，市場町，樫山町，復井町，河合中町，河合西町，新部町，三和町，昭和町，粟生町，西脇町，阿形町，福甸町，来住町，下来住町，黍田町（39地区）．
+      </details>
+      <details>
+        <summary>加西市</summary>
+        北条町北条，北条町栗田，北条町小谷，北条町横尾，北条町古坂，北条町東高室，北条町西高室，北条町東南，北条町西南，北条町黒駒（10地区）．
+      </details>
+      <details>
+        <summary>加東市</summary>
+        河高，新町，北野，穂積，稲尾，下三草，木梨，梶原，窪田，家原，西垂水，貝原，野村，上田，福吉，大門，西古瀬，中古瀬，東古瀬，屋度，沢部，東実，山国，出水，田中，松尾，鳥居，社，高岡，多井田，喜田，上中（32地区）．
+      </details>
+      <details>
+        <summary>たつの市</summary>
+        （X地区）．
+      </details>
+      <details>
+        <summary>稲美町</summary>
+        （0地区）．
+      </details>
+      <details>
+        <summary>播磨町</summary>
+        全域（7地区）．
+      </details>
+      <details>
+        <summary>太子町</summary>
+        鵤（X地区）．
+      </details>
+      　上記の地区全域をカバーしているわけではありませんのでご注意ください．<br/>
+      　<span style="color: #ff0000;">上記の収録地区一覧はしばらく更新していないので，実際に見られる地区はこの他にも多くございます．</span><br/>
+      　<a href="./geojson_search.html">こちら</a>から，現在収録している地域の小字名を検索することができます．
+    </div>
+    <div class="title">参考資料</div>
+    <div id="reference">
+      <ol>
+        <h3 class="reference_city reference_top">兵庫県全般</h3>
+        <li>兵庫県地名研究会, 兵庫県小字名集 1, 神文書院, 1991.</li>
+        <li>兵庫県地名研究会, 兵庫県小字名集 3, 神文書院, 1994.</li>
+        <li>全国農地ナビ, <span class="url">https://www.alis-ac.jp/.</span></li>
+        <li>全国地価マップ, <span class="url">https://www.chikamap.jp/.</span></li>
+        <li>公図</li>
+        
+        <h3 class="reference_city">姫路市</h3>
+        <li>飾磨町, 兵庫県飾磨郡飾磨町志, 飾磨町, 1920.</li>
+        <li>姫路市都市計画部, 姫路市全圖, 姫路市都市計画部, 1928.</li>
+        <li>帝国市町村地図刊行会, 姫路市土地宝典, 帝国市町村地図刊行会, 1936.</li>
+        <li>荒川郷土史編集委員会, ふる里あらかわ, 荒川連会自治会, 1980.</li>
+        <li>姫路市水尾川東土地区画整理組合, 津田のみおつくし, 姫路市水尾川東土地区画整理組合, 1980.</li>
+        <li>姫路市網干土地区画整理組合, 宇須伎津を訪ねて, 姫路市網干土地区画整理組合, 1984.</li>
+        <li>姫路市灘南部土地区画整理組合, 恋の浜藻塩の郷, 姫路市灘南部土地区画整理組合, 1988.</li>
+        <li>田中早春, 姫路市小字地名・小字図集, 田中早春, 1994.</li>
+        <li>姫路市城陽土地区画整理組合, 水と緑のまち城陽, 姫路市城陽土地区画整理組合, 1998.</li>
+        <li>藤井寿, 船津町史, 船津町社会教育協議会, 2006.</li>
+        <li>栄幹夫, 姫路市大津六ヵ村小字地名考, 栄幹夫, 2007.</li>
+        <li>岩部自治会, 岩部 いくはべの里, 岩部自治会, 2013.</li>
+        <li>香寺町土師歴史研究会, ふるさと土師 伝える郷土史, 香寺町土師自治会, 2015</li>
+        <li>廣畑村歴史の会, 廣畑村の絵図, 廣畑村歴史の会, 2019</li>
+        <li>加納原田村全圖（はりまふるさとアーカイブ）, <span class="url">http://www2.library.city.himeji.hyogo.jp/webmuseum/detail/106426.</span></li>
+        
+        <h3 class="reference_city">尼崎市</h3>
+        <li>大日本帝国市町村地図刊行会, 兵庫県武庫郡武庫村土地宝典, 大日本帝国市町村地図刊行会, 1941.</li>
+        <li>日地出版, 最新尼崎市精図, 日地出版, 1961.</li>
+        <li>渡辺久雄, 尼崎の地名, 尼崎市立地域研究史料館, 1985.</li>
+        
+        <h3 class="reference_city">明石市</h3>
+        <li>帝国市町村地図刊行協会, 兵庫県明石市大久保・魚住・二見地区土地宝典, 帝国市町村地図刊行協会, 1960.（明石市立文化博物館所蔵資料）</li>
+        
+        <h3 class="reference_city">西宮市</h3>
+        <li>武庫郡西宮町全図（にしのみやデジタルアーカイブ）, <span class="url">https://archives.nishi.or.jp/04_entry.php?mkey=1889.</span></li>
+        
+        <h3 class="reference_city">加古川市</h3>
+        <li>大日本帝国市町村地図刊行会, 兵庫県加古川市上荘・平荘・八幡地区土地宝典, 帝国市町村地図刊行協会, 1960.</li>
+        <li>石見完次, 古地名新解 : 加古川おもしろ誌, 神文書院, 1992.</li>
+        <li>喜多正人, 砂部あれこれ, 喜多正人, 2014.</li>
+        <li>加古川市税務課蔵字限図.</li>
+        
+        <h3 class="reference_city">小野市</h3>
+        <li>加東郡教育会, 加東郡誌, 加東郡教育会, 1923.</li>
+        <li>小野市教育委員会, 山田の里地区発掘調査報告書, 小野市教育委員会, 1993.</li>
+        <li>小野市立好古館, わたしたちのまち・阿形, 小野市立好古館, 2003.</li>
+        <li>小野市立好古館, わたしたちのまち・黍田, 小野市立好古館, 2004.</li>
+        <li>小野市立好古館, わたしたちのまち・中番, 小野市立好古館, 2004.</li>
+        <li>神戸大学大学院人文学研究科地域連携センター・小野市立好古館, 河合地区の古代・中世遺跡と赤松氏, 小野市立好古館, 2007.</li>
+        <li>小野市史活用委員会絵図部会, 小野市絵図集 本編, 小野市, 2010.</li>
+        <li>小野市史活用委員会絵図部会, 小野市絵図集 絵図編, 小野市, 2010.</li>
+        <li>神生昭夫, 地名や地形から歴史を探る, 出版社・出版年不明.</li>
+        <li>小野市税務課蔵字限図.</li>
+        
+        <h3 class="reference_city">加西市</h3>
+        <li>加西市史編さん委員会, 加西市史 第3巻, 加西市, 2002.</li>
+        
+        <h3 class="reference_city">加東市</h3>
+        <li>兵庫県加東郡社町東古瀬巨勢誌編纂委員会, 巨勢誌, 兵庫県加東郡社町東古瀬, 1978.</li>
+        <li>河高地区歴史書編纂委員会, 河高の歴史, 加東市河高地区, 2018.</li>
+        <li>加東市税務課蔵字限図.</li>
+        
+        <h3 class="reference_city">たつの市</h3>      
+        <li>帝国市町村地図刊行会, 兵庫県揖保郡龍野町小宅村土地宝典, 帝国市町村地図刊行会, 1936.</li>  
+        <li>御津町史編集専門部委員会, 御津町史 第4巻, 御津町, 1999.</li>
+        <li>龍野市教育委員会, 奥村廃寺 2, 龍野市教育委員会, 2002.</li>
+        <li>たつの市税務課蔵字限図および資料.</li>
+        
+        <h3 class="reference_city">稲美町</h3>        
+        <li>稲美町税務課蔵字限図.</li>
+        
+        <h3 class="reference_city">播磨町</h3>        
+        <li>村津雅夫, 播磨町の地名とその歴史, 播磨町立図書館, 1999.</li>
+        
+        <h3 class="reference_city">太子町</h3>        
+        <li>太子町史編集専門委員会, 太子町史 第4巻, 太子町, 1990.</li>
+      </ol>  
+    </div>
+  </main>
+  <footer>
+    Copyright (C) 2021 Kazusa Takami All rights reserved.
+  </footer>
+</body>
+</html>

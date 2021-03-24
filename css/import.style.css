@@ -1,0 +1,2 @@
+@import url("d.style.css") only screen and (min-width:840px);
+@import url("m.style.css") only screen and (max-width:839px);
