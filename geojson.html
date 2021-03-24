@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-language" content="ja">
+  <meta name="robots" content="noindex">
+  <meta name="robots" content="nofollow">
+  <title>兵庫県小字地図</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="./css/leaflet.rrose.css" />
+  <link rel="stylesheet" href="./css/L.Control.Opacity.css" />
+  <link rel="stylesheet" href="./css/import.style.css" />
+  <link rel="icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="./img/android-touch-icon.png" sizes="192x192">
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+  <script src="./js/leaflet.ajax.js"></script>
+  <script src="./js/leaflet.rrose-src.js"></script>
+  <script src="./js/jquery-3.5.1.min.js"></script>
+  <script src="./data/oaza_hyogo.geojson"></script>
+  <script src="./data/koaza_hyogo.geojson"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+  <script src="./js/L.Control.Opacity.js"></script>
+  <script>
+    var params = getParams();
+    
+    function getParams() {
+	  var params = {};
+	    if (location.search) {
+		  var requests = location.search.substring(1).split("&");
+		  console.log(requests);
+		  for (var i in requests) {
+			var items = requests[i].split("=");
+			params[items[0]] = items[1];
+		  }
+	    }
+      console.log(params);
+	  return params;
+    }
+    
+    function init() {
+      // デフォルトの緯度・経度・ズームレベル
+      // var lat = 34.894;
+      // var lng = 134.953;
+      var lat = 34.82;
+      var lng = 134.69;
+      var zoom = 13;
+      
+      if (Object.keys(params).includes("lat")) {
+        if (parseFloat(params["lat"])) {
+          lat = parseFloat(params["lat"]);
+        }
+      }
+      
+      if (Object.keys(params).includes("lng")) {
+        if (parseFloat(params["lng"])) {
+          lng = parseFloat(params["lng"]);
+        }
+      }
+      
+      if (Object.keys(params).includes("zoom")) {
+        if (parseFloat(params["zoom"])) {
+          zoom = parseInt(params["zoom"]);
+        }
+      }
+      
+      var map = L.map('mapcontainer', {
+      	center: [lat, lng],
+      	zoom: zoom,
+      	minZoom: 10,
+      	zoomControl: true
+      });
+        
+      var gsiPaleMap = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', {
+        opacity: 0.3,
+        attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+      }).addTo(map);
+      /*
+      var cityStyle = {
+        "color": "#000000",
+        "weight": 0.5,
+        "fillOpacity": 0.0
+      };
+      
+      var city_vec = L.geoJson(hyogo_city, {,
+      	style: cityStyle
+      }).addTo(map);
+      */
+      var koazaStyle = {
+        "color": "#ff0000",
+        "weight": 1,
+        "fillOpacity": 0.0
+      };
+      
+      var koaza_vec = L.geoJson(koaza_hyogo, {
+      	attribution: "兵庫県小字地図",
+      	style: koazaStyle,
+      	onEachFeature: function(features, layer){
+          layer.on('click', function(e){
+            var hover_bubble = new L.Popup({ offset: new L.Point(0,-5), closeButton: false, autoPan: true, autoClose: false })
+              .setContent('市町名: ' + features.properties.city + '<br />大字名: ' + features.properties.oaza_name + '<br />小字名: ' + features.properties.koaza_name)
+              .setLatLng(e.latlng)
+              .openOn(map);
+          });
+          //layer.on('mouseout', function(e){ map.closePopup() });
+        }
+      }).addTo(map);
+      
+      var oazaStyle = {
+        "color": "#001f92",
+        "weight": 2
+      };
+      
+      var oaza_vec = L.geoJson(oaza_data, {
+      	style: oazaStyle
+      }).addTo(map);
+      
+    }
+  </script>
+</head>
+<body onload="init()">
+  <header id="header">
+    <a href="./geojson.html"><div id="logo-koaza">兵庫県小字地図</div></a>
+    <div id="about-koaza"><a href="./geojson_about.html" id="about_link">About</a></div>
+  </header>
+  <div id="mapcontainer"></div>
+</body>
+</html>
