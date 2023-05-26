@@ -1,6 +1,8 @@
 *.cpg
 *.dbf
 *.prj
+*.qmd
 *.qpj
 *.shp
 *.shx
+.DS_Store
