@@ -6,3 +6,4 @@
 *.shp
 *.shx
 .DS_Store
+*.geojson
