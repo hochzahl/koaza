@@ -1,0 +1,15 @@
+{
+"name": "oaza",
+"description": "oaza",
+"version": "2",
+"minzoom": "10",
+"maxzoom": "17",
+"center": "137.009125,35.001878,17",
+"bounds": "136.978801,34.967662,137.027350,35.018702",
+"antimeridian_adjusted_bounds": "136.978801,34.967662,137.027350,35.018702",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v2.26.1",
+"generator_options": "tippecanoe -l oaza_map -rg -z17 -Z10 -e oaza -pC oaza_aichi.geojson",
+"json": "{\"vector_layers\":[{\"id\":\"oaza_map\",\"description\":\"\",\"minzoom\":10,\"maxzoom\":17,\"fields\":{\"koaza_name\":\"String\",\"oaza_name\":\"String\"}}],\"tilestats\":{\"layerCount\":1,\"layers\":[{\"layer\":\"oaza_map\",\"count\":6,\"geometry\":\"LineString\",\"attributeCount\":2,\"attributes\":[{\"attribute\":\"koaza_name\",\"count\":6,\"type\":\"string\",\"values\":[\"字堀割\",\"字官林\",\"字弥陀坂\",\"字恩田\",\"字末浜新田\",\"字西日成\"]},{\"attribute\":\"oaza_name\",\"count\":6,\"type\":\"string\",\"values\":[\"下重原\",\"元刈谷\",\"刈谷\",\"小山\",\"熊\",\"高津波\"]}]}]}}"
+}
